@@ -17,7 +17,7 @@ head(Eupt_Sel)
 Eupt_Sel <- Eupt_Sel[which(rowSums(Eupt_Sel) > 0), ]
 Eupt_Sel
 
-Eupt_run1 <- bayesPref(pData = Eupt_Sel, mcmcL = 1e3, pops = FALSE)
+Eupt_run1 <- bayesPref(pData = Eupt_Sel, mcmcL = 1e4, pops = FALSE)
 str(Eupt_run1)
 names(Eupt_run1[[1]])
 
@@ -45,13 +45,11 @@ SpiderMonkey <- function(N){
 	return(Name)
 	}
 
-Runt <- SpiderMonkey(N = 1e4)
+Runt <- SpiderMonkey(N = 1e3)
 
-
-
-
-
-
+head(Runt)
+plot(Runt, pch = 19, las = 1)
+plot(density(Runt), lwd = 2, las = 1, ylim = c(0, 20), xlab = "", main = "")
 
 
 # save.image("Data/Eupt_ovi_pref.RData")
