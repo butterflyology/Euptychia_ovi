@@ -22,7 +22,7 @@ str(Eupt_run1)
 names(Eupt_run1[[1]])
 
 
-plot(Eupt_run1[[1]]$PopPref[1,], pch = 19, las = 1, xlab = "Iteration")
+plot(Eupt_run1[[1]]$PopPref[1,], pch = 19, las = 1, xlab = "Iteration", )
 
 prefPlot(Eupt_run1[[1]], burn = 1e3, ymax = 60, pop = FALSE)
 head(Eupt_run1[[1]]$PopPref[2, ])
@@ -50,6 +50,7 @@ Runt <- SpiderMonkey(N = 1e3)
 head(Runt)
 plot(Runt, pch = 19, las = 1)
 plot(density(Runt), lwd = 2, las = 1, ylim = c(0, 20), xlab = "", main = "")
+
 
 
 # save.image("Data/Eupt_ovi_pref.RData")
