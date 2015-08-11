@@ -16,11 +16,11 @@ Eupt_Sel <- Eupt_data[, 2:3]
 head(Eupt_Sel)
 Eupt_Sel <- Eupt_Sel[which(rowSums(Eupt_Sel) > 0), ]
 Eupt_Sel
+colSums(Eupt_Sel)
 
 Eupt_run1 <- bayesPref(pData = Eupt_Sel, mcmcL = 1e4, pops = FALSE)
 str(Eupt_run1)
 names(Eupt_run1[[1]])
-
 
 plot(Eupt_run1[[1]]$PopPref[1,], pch = 19, las = 1, xlab = "Iteration", )
 
@@ -46,7 +46,7 @@ SpiderMonkey <- function(N){
 	}
 
 Runt <- SpiderMonkey(N = 1e3)
-
+autocorr.plot(Runt)
 head(Runt)
 plot(Runt, pch = 19, las = 1)
 plot(density(Runt), lwd = 2, las = 1, ylim = c(0, 20), xlab = "", main = "")

@@ -12,7 +12,7 @@ PPlot <- function (prefres = NULL, burn = 0, ind = TRUE, pop = TRUE, dist = FALS
     if (ps == TRUE) {
         postscript(file = file, width = 6, height = 6)
     }
-    plot(0:1, 0:1, type = "n", ylim = c(0, ymax), xlim = c(0.5, 1), xlab = "Preference", ylab = "Probability", cex.lab = 1.2, 
+    plot(0:1, 0:1, type = "n", ylim = c(0, ymax), xlim = c(0.5, 1), xlab = "Preference", ylab = "Probability density", cex.lab = 1.2, 
         cex.axis = 1.1, las = 1)
     if (ind == TRUE) {
         for (i in 1:nInd) {
