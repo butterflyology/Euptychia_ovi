@@ -64,6 +64,10 @@ plot(Runt, pch = 19, las = 1)
 plot(density(Runt), lwd = 2, las = 1, ylim = c(0, 20), xlab = "", main = "")
 
 source("PPlot.R")
+# pdf(file = "Eupt_plot.pdf", bg = "white")
+PPlot(Eupt_run1[[1]], burn = 1e3, ymax = 100, pop = FALSE)
+# dev.off()
+
 
 #####
 ##### Feeding experiments

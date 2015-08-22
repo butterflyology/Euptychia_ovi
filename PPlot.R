@@ -63,7 +63,3 @@ PPlot <- function (prefres = NULL, burn = 0, ind = TRUE, pop = TRUE, dist = FALS
         dev.off()
     }
 }
-
-# pdf(file = "Eupt_plot.pdf", bg = "white")
-PPlot(Eupt_run1[[1]], burn = 1e3, ymax = 100, pop = FALSE)
-# dev.off()
