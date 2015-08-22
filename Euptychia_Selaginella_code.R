@@ -63,6 +63,7 @@ head(Runt)
 plot(Runt, pch = 19, las = 1)
 plot(density(Runt), lwd = 2, las = 1, ylim = c(0, 20), xlab = "", main = "")
 
+source("PPlot.R")
 
 #####
 ##### Feeding experiments
