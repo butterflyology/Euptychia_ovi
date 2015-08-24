@@ -19,8 +19,6 @@ setwd("~/Desktop/Projects/Euptychia_ovi_pref/")
 library("bayespref")
 library("coda")
 
-setwd("~/Desktop/Projects/Euptychia_ovi_pref")
-
 Eupt_data <- read.csv("Data/Ovi_pref_data.csv", header = TRUE, row.names = 1)
 head(Eupt_data)
 
@@ -34,7 +32,7 @@ Eupt_run1 <- bayesPref(pData = Eupt_Sel, mcmcL = 1e4, pops = FALSE)
 str(Eupt_run1)
 names(Eupt_run1[[1]])
 
-plot(Eupt_run1[[1]]$PopPref[1,], pch = 19, las = 1, xlab = "Iteration", )
+plot(Eupt_run1[[1]]$PopPref[1,], pch = 19, las = 1, xlab = "Iteration")
 
 prefPlot(Eupt_run1[[1]], burn = 1e3, ymax = 60, pop = FALSE)
 head(Eupt_run1[[1]]$PopPref[2, ])
@@ -89,8 +87,8 @@ S2 <- Sel[Sel$Trmt == "S2", ]
 G1 <- Sel[Sel$Trmt == "G1", ]
 
 par(mfrow = c(1, 2))
-with(Sel[Sel$Time == "1", ], plot(Trmt, Mass, type = "b", pch = 19, las = 1, ylab = "Mass (mg)", main = "Time 1"))
-with(Sel[Sel$Time == "2", ], plot(Trmt, Mass, type = "b", pch = 19, yaxt = "n", main = "Time 2"))
+with(Sel[Sel$Time == "1", ], plot(Trmt, Mass, type = "b", pch = 19, las = 1, ylab = "Mass (mg)", main = "Time 1", col = c("grey", "dark green", "dark green")))
+with(Sel[Sel$Time == "2", ], plot(Trmt, Mass, type = "b", pch = 19, yaxt = "n", main = "Time 2", col = c("grey", "dark green", "dark green")))
 dev.off()
 
 T1 <- Sel[Sel$Time == "1", ]
