@@ -51,7 +51,8 @@ SpiderMonkey <- function(N){
 		for(i in 1:N){
 	temp <- bayesPref(pData = Eupt_Sel, mcmcL = 1e3, pops = FALSE)
 	Name[i] <- temp[[1]]$PopPref[2, 1000]
-	cat("\n", i, "of", N, "\n")}
+	cat("\n", i, "of", N, "\n")
+	}
 	return(Name)
 	}
 
