@@ -6,18 +6,24 @@
 # 	3) phylogenetic distance
 #	
  
-set.seed(1234)
+set.seed(15213748)
+
+library("bayespref")
+library("coda")
+library("ggplot2")
+library("picante")
+
 
 setwd("~/Desktop/Projects/Euptychia_ovi_pref/")
 # load("Data/Euptychia_Selaginella.RData")
 # save.image("Data/Euptychia_Selaginella.RData")
 
+(sessInf <- sessionInfo())
+
 
 #####
 ##### Oviposition experiments
 #####
-library("bayespref")
-library("coda")
 
 Eupt_data <- read.csv("Data/Ovi_pref_data.csv", header = TRUE, row.names = 1)
 head(Eupt_data)
@@ -71,7 +77,6 @@ PPlot(Eupt_run1[[1]], burn = 1e3, ymax = 100, pop = FALSE)
 #####
 ##### Feeding experiments
 ####
-library("ggplot2")
 
 Sel <- read.csv("Data/Sel1a.csv", header = TRUE)
 Sel$Indiv <- as.factor(Sel$Indiv)
@@ -176,6 +181,5 @@ rownames(EP.data) <- c("Euptychia", "Pieralla")
 colnames(EP.data) <- c("Physcomitrella", "Selaginella", "Poales", "Zingiberales")
 EP.data
 
-library("picante")
 pd(samp = EA.data, tree = Plantae, include.root = FALSE)
 pd(samp = EP.data, tree = Plantae, include.root = FALSE)
