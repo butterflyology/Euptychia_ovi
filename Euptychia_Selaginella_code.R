@@ -103,6 +103,7 @@ summary(Mdiff)
 
 a1 <- lm(Mdiff[, 1] ~ as.factor(Mdiff[, 2]))
 a1
+summary(a1)
 Anova(a1)
 TukeyHSD(aov(a1))
 
