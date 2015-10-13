@@ -107,7 +107,13 @@ summary(a1)
 Anova(a1)
 TukeyHSD(aov(a1))
 
-boxplot(Mdiff[, 1] ~ Mdiff[, 2], las = 1, col = c("light grey", "dark grey", "dark grey"), ylab = "Mass difference", names = c("G1", "S1", "S2"), pch = 19)
+# pdf(file = "Images/Sel-box.pdf", bg = "white")
+boxplot(Mdiff[, 1] ~ Mdiff[, 2], las = 1, col = c("light grey", "dark grey", "dark grey"), ylab = "Mass difference", names = c("G1", "S1", "S2"), pch = 19, ylim = c(-10, 30))
+abline(h = 0, lwd = 2, lty = 2)
+text(1, 2, "A")
+text(2, 28, "B")
+text(3, 21, "B")
+# dev.off()
 
 #####
 ##### Phylogenetic distance
