@@ -3,7 +3,8 @@
 # Three major code chunks: 
 # 	1) oviposition experiments
 #	2) feeding experiments
-# 	3) phylogenetic distance
+#	3) ordinated diet breadth
+# 	4) phylogenetic distance
 #	
  
 set.seed(15213748)
@@ -16,8 +17,7 @@ library("phytools")
 library("car")
 library("dplyr")
 library("multcomp")
-
-
+library("ordiBreadth")
 
 setwd("~/Desktop/Projects/Euptychia_ovi_pref/")
 # load("Data/Euptychia_Selaginella.RData")
@@ -115,6 +115,17 @@ text(2, 28, "B")
 text(3, 21, "B")
 # dev.off()
 
+
+#####
+##### Ordinated diet breadth
+#####
+
+head(diet) # The diet breadth matrix
+
+ord1 <- ordi.breadth(diet, dist.method = "jaccard")
+summary.hbreadth(ord1, by = "Herbivore", round = 3)
+
+
 #####
 ##### Phylogenetic distance
 #####
@@ -130,7 +141,6 @@ EA.data <- matrix(c(1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 
 rownames(EA.data) <- c("Euptychia", "Adelpa")
 colnames(EA.data) <- c("Physcomitrella", "Selaginella", "Poales", "Malpighiales", "Ericales", "Myrtales", "Rosales", "Asterales", "Lamiales", "Malvales", "Fagales", "Gentianales")
 EA.data
-
 
 # Do for Pierella too
 EP.data <- matrix(c(1, 1, 1, 0, 0, 0, 1, 1), byrow = TRUE, nrow = 2)
