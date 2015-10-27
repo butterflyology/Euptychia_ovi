@@ -51,13 +51,12 @@ length(Eupt_run1[[1]]$PopPref[2, ])
 
 burnlow <- floor(0.1 *(length(Eupt_run1[[1]]$PopPref[2, ])))
 postburn <- Eupt_run1[[1]]$PopPref[2, ][burnlow:length(Eupt_run1[[1]]$PopPref[2, ])]
-plot(postburn, pch = 19, las = 1)
+plot(postburn, pch = 19, las = 1, type = "l")
 
 effectiveSize(postburn)
 autocorr.plot(postburn, lag.max = 50)
-1 / sqrt(effectiveSize(postburn))
-# We have a problem with effective sampel size and the MCse, which we want below 0.05
-
+1 / sqrt(effectiveSize(postburn)) # We have a problem with effective sampel size and the MCse, which we want below 0.05
+geweke.diag(postburn) # values greater that 2.0 (on abs number scale) indicate a possbile problem with convergence. 
 
 # Running so the last state of a 1000 step run is saved for each of X runs
 SpiderMonkey <- function(N){
@@ -76,9 +75,10 @@ autocorr.plot(Runt)
 tnuR <- as.mcmc(Runt)
 effectiveSize(tnuR) # very nice
 1 / sqrt(effectiveSize(tnuR)) # problem solved
+geweke.diag(tnuR) # suggests the chains have converged
 
 head(Runt)
-plot(Runt, pch = 19, las = 1)
+plot(Runt, pch = 19, las = 1, type = "l")
 plot(density(Runt), lwd = 2, las = 1, ylim = c(0, 20), xlab = "", main = "")
 
 source("PPlot.R")
