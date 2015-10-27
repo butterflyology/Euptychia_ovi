@@ -55,6 +55,9 @@ plot(postburn, pch = 19, las = 1)
 
 effectiveSize(postburn)
 autocorr.plot(postburn, lag.max = 50)
+1 / sqrt(effectiveSize(postburn))
+# We have a problem with effective sampel size and the MCse, which we want below 0.05
+
 
 # Running so the last state of a 1000 step run is saved for each of X runs
 SpiderMonkey <- function(N){
@@ -69,6 +72,11 @@ SpiderMonkey <- function(N){
 
 Runt <- SpiderMonkey(N = 1e3)
 autocorr.plot(Runt)
+
+tnuR <- as.mcmc(Runt)
+effectiveSize(tnuR) # very nice
+1 / sqrt(effectiveSize(tnuR)) # problem solved
+
 head(Runt)
 plot(Runt, pch = 19, las = 1)
 plot(density(Runt), lwd = 2, las = 1, ylim = c(0, 20), xlab = "", main = "")
