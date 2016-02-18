@@ -125,7 +125,55 @@ text(3, 21, "B")
 # dev.off()
 
 
-# ANCOVA
+# ANCOVA #1
+Sel$Indiv
+i1 <- seq(from = 1, to = 107, by = 2)
+i2 <- seq(from = 2, to = 108, by = 2)
+
+Mdiff <- Sel$Mass[i2] - Sel$Mass[i1]
+Treat <- Sel$Trmt[i2]
+
+mod<-lm(Mdiff~ Treat)
+hist(mod$residuals)
+plot(mod)
+Anova(mod)
+summary(mod)
+
+mean(Mdiff[1:18])
+sd(Mdiff[1:18]) / sqrt(18)
+mean(Mdiff[19:36], na.rm = TRUE)
+sd(Mdiff[19:36], na.rm = TRUE) / sqrt(17)
+mean(Mdiff[37:54], na.rm = TRUE)
+sd(Mdiff[37:54],na.rm=TRUE) / sqrt(17)
+
+boxplot(Mdiff~ Treat)
+TukeyHSD(aov(mod))
+
+
+finMass <- Sel$Mass[i2]
+inMass <- Sel$Mass[i1]
+
+modF <- lm(finMass ~ Treat * inMass)
+Anova(modF)
+1605.4/2
+157.5/2
+1888.9/46
+AIC(modF)
+modR <- lm(finMass ~ Treat + inMass)
+Anova(modR)
+AIC(modR)
+
+TukeyHSD(aov(modF),which="Treat")
+
+res <- lm(finMass ~ inMass)$residuals
+modr <- lm(res ~ Treat[-which(is.na(finMass) == TRUE)])
+TukeyHSD(aov(modr))
+
+summary(modF)
+summary(glht(modR,linfct=mcp(Treat="Tukey")))
+
+
+# ANCOVA #2 - a different flavor, same result. 
 with(Sel, table(Time, Indiv))
 # with(Sel, interaction.plot(Time, Indiv, Mass))
 
